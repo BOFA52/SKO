@@ -1,0 +1,350 @@
+/* ==================== RESET BÁSICO ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== BODY ==================== */
+body {
+  background-color: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* ==================== HEADER ==================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .logo img {
+  width: 80px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+header .logo img:hover {
+  transform: scale(1.05);
+}
+
+.admin-gear {
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: transform 0.3s;
+}
+
+.admin-gear:hover {
+  transform: rotate(20deg);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.activo {
+  color: #d4af37;
+}
+
+.carrito-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #d4af37;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* ==================== MENÚ RESPONSIVE ==================== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #222;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+nav ul.active {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  gap: 15px;
+  z-index: 1001;
+}
+
+@media (max-width:768px){
+  nav ul { display:none; }
+  .menu-toggle{display:flex;}
+}
+
+/* ==================== PRODUCTOS ==================== */
+.productos {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.productos h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.descripcion-categoria {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.producto-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.producto-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.producto-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+}
+
+.producto-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.producto-card .precio {
+  display: block;
+  margin: 10px 0;
+  font-weight: 700;
+  color: #d4af37;
+}
+
+.producto-card button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #d4af37;
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.producto-card button:hover {
+  background-color: #c49c2f;
+  transform: scale(1.05);
+}
+
+/* ==================== MODO ADMIN ==================== */
+#modo-edicion-texto {
+  display:none;
+  background-color: #fff7e6;
+  color: #d4af37;
+  font-weight: 600;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#agregar-producto-btn {
+  display:none;
+  margin: 0 auto 20px;
+}
+
+/* ==================== FORMULARIO AGREGAR PRODUCTO ==================== */
+.form-agregar-producto {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  width: 400px;
+  max-width: 90%;
+  z-index: 1005;
+  animation: formFadeIn 0.3s ease forwards;
+}
+
+.form-agregar-producto input,
+.form-agregar-producto input[type="file"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.form-agregar-producto input:focus,
+.form-agregar-producto input[type="file"]:focus {
+  border-color: #b9924c;
+  box-shadow: 0 0 12px rgba(185,146,76,0.3);
+  outline: none;
+}
+
+.form-agregar-producto button {
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: #b9924c;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-agregar-producto button:hover {
+  background: #a17f3f;
+}
+
+/* ==================== MODAL CARRITO ==================== */
+.carrito-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.carrito-contenido {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  text-align: center;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.carrito-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.carrito-item p {
+  flex: 1;
+  text-align: left;
+}
+
+.carrito-item button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #fff;
+}
+
+/* ==================== WHATSAPP ==================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1003;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* ==================== ANIMACIÓN FORMULARIO ==================== */
+@keyframes formFadeIn {
+  from { opacity: 0; transform: translate(-50%, -55%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}

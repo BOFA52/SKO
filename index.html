@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" data-category="inicio">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio | SKO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-category="inicio">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="img/sko logo-Photoroom (1).png" alt="SKO Logo">
+      <span id="admin-btn" title="Modo edición" class="admin-gear">⚙️</span>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="relojes.html">Relojes</a></li>
+        <li><a href="camisas.html">Camisas</a></li>
+        <li><a href="pantalones.html">Pantalones</a></li>
+        <li><a href="accesorios.html">Accesorios</a></li>
+        <li><a href="vapes.html">Vapes</a></li>
+      </ul>
+    </nav>
+
+    <div class="carrito-container">
+      <span id="carrito-icono" class="carrito-emoji">🛒</span>
+      <span id="contador-carrito" class="contador-carrito">0</span>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- ===== SECCIÓN PRINCIPAL ===== -->
+  <section class="productos">
+    <h2>BIENVENIDO A SKO</h2>
+    <p class="descripcion-categoria">
+      Explora nuestras categorías: Relojes, Camisas, Pantalones, Accesorios y Vapes premium.
+    </p>
+
+    <div id="modo-edicion-texto" class="modo-edicion-texto" style="display:none;">
+      🛠 Modo edición activo
+    </div>
+
+    <button id="agregar-producto-btn" class="btn-agregar" style="display:none;">
+      ➕ Añadir producto
+    </button>
+
+    <!-- Formulario admin para añadir productos -->
+    <div id="form-agregar-producto" class="form-agregar-producto" style="display:none;">
+      <input type="text" id="nombre-producto" placeholder="Nombre del producto">
+      <input type="text" id="descripcion-producto" placeholder="Descripción">
+      <input type="number" id="precio-producto" placeholder="Precio">
+      <input type="file" id="imagen-producto" accept="image/*">
+      <button id="guardar-producto-btn">Guardar Producto</button>
+    </div>
+
+    <div id="productos-container" class="productos-grid"></div>
+  </section>
+
+  <!-- ===== MODAL CARRITO ===== -->
+  <div id="carrito-modal" class="carrito-modal">
+    <div class="carrito-contenido">
+      <h2>🛍 Tu Carrito</h2>
+      <div id="carrito-items"></div>
+      <div class="carrito-total">
+        <p>Total: <span id="total">$0</span></p>
+        <button id="cerrar-carrito" class="btn-cerrar">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 SKO — Estilo Premium</p>
+  </footer>
+
+  <!-- ===== BOTÓN WHATSAPP ===== -->
+  <a href="https://wa.me/573163296713?text=¡Hola!%20Estoy%20interesado%20en%20los%20productos%20de%20SKO."
+     class="whatsapp-float" target="_blank" title="Chatea con nosotros por WhatsApp">
+    <img src="img/simbolo.jpg" alt="WhatsApp">
+  </a>
+<script src="main.js"></script>
+</body>
+</html>
