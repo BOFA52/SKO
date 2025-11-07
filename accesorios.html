@@ -73,15 +73,16 @@
   </a>
 
   <script src="main.js"></script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+ <!-- === SUBIDA DE IMÁGENES CON FIREBASE === -->
+<input type="file" id="imagenInput" accept="image/*">
+<img id="vistaPrevia" style="max-width:200px; margin-top:10px; display:block;" />
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+<script type="module">
+  // ===== IMPORTS DE FIREBASE =====
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-storage.js";
+
+  // ===== CONFIGURACIÓN FIREBASE =====
   const firebaseConfig = {
     apiKey: "AIzaSyDohSXtLQmt3zOwtimIt6Dl-ojSiNxt8hM",
     authDomain: "urban-sko.firebaseapp.com",
@@ -92,12 +93,37 @@
     measurementId: "G-HRJRP99SP4"
   };
 
-  // Initialize Firebase
+  // ===== INICIALIZAR FIREBASE =====
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  const storage = getStorage(app);
+
+  // ===== SUBIR Y MOSTRAR IMAGEN =====
+  const input = document.getElementById('imagenInput');
+  const vista = document.getElementById('vistaPrevia');
+
+  input.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Crear referencia en Storage
+    const storageRef = ref(storage, 'imagenes/' + file.name);
+
+    // Subir imagen a Firebase
+    await uploadBytes(storageRef, file);
+
+    // Obtener URL pública
+    const url = await getDownloadURL(storageRef);
+
+    // Mostrar en la web
+    vista.src = url;
+    alert('✅ Imagen subida correctamente. URL pública:\n' + url);
+  });
+</script>
+
 </script>
 </body>
 </html>
+
 
 
 
